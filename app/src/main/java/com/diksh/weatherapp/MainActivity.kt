@@ -27,11 +27,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.diksh.weatherapp.ui.theme.WeatherAppTheme
 
 class MainActivity : ComponentActivity() {
 
-    val itemList = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+    val itemList =
+        listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,8 +97,7 @@ fun MiddleSection() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 80.dp),
-        contentAlignment = Alignment.Center
+            .padding(top = 80.dp), contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Icon(
@@ -151,11 +152,23 @@ fun HorizontalScroll(itemsList: List<String>) {
 
     LazyRow(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 34.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)){
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
 
-        items(itemsList){item->
+        items(itemsList) { item ->
             Card() {
-                Text(modifier = Modifier.padding(30.dp), text = item)
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_launcher_foreground),
+                        contentDescription = "icon_weather"
+                    )
+                    Text(modifier = Modifier.padding(2.dp), text = item, fontSize = 14.sp)
+                    Text(modifier = Modifier.padding(4.dp), text = item, fontSize = 16.sp)
+
+                }
             }
         }
 
@@ -166,7 +179,7 @@ fun HorizontalScroll(itemsList: List<String>) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
-    val itemList = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+    val itemList = listOf("Now", "5 pm", "6 pm", "7 pm", "8 pm", "9 pm", "10 pm")
 
     WeatherAppTheme {
         HomeScreen("Weather App", itemsList = itemList)
