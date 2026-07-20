@@ -150,28 +150,33 @@ fun SecondMiddleSection() {
 @Composable
 fun HorizontalScroll(itemsList: List<String>) {
 
-    LazyRow(
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 34.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
+    Column(modifier = Modifier.padding(top = 20.dp)) {
 
-        items(itemsList) { item ->
-            Card() {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_launcher_foreground),
-                        contentDescription = "icon_weather"
-                    )
-                    Text(modifier = Modifier.padding(2.dp), text = item, fontSize = 14.sp)
-                    Text(modifier = Modifier.padding(4.dp), text = item, fontSize = 16.sp)
+        Text(text = "Hourly Forecast")
 
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 24.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+
+            items(itemsList) { item ->
+                Card() {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_launcher_foreground),
+                            contentDescription = "icon_weather"
+                        )
+                        Text(modifier = Modifier.padding(2.dp), text = item, fontSize = 14.sp)
+                        Text(modifier = Modifier.padding(4.dp), text = item, fontSize = 16.sp)
+
+                    }
                 }
             }
-        }
 
+        }
     }
 }
 
